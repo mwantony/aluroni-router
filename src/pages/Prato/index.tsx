@@ -7,9 +7,8 @@ export default function Prato() {
   const navigate = useNavigate();
   const { id } = useParams();
   const prato = cardapio.find((item) => item.id === Number(id));
-  if (!prato) {
-    return '';
-  }
+  if (!prato) return '';
+
   return (
     <>
       <button
