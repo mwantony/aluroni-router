@@ -1,15 +1,21 @@
 import styles from './Prato.module.scss';
-import { useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import cardapio from 'data/cardapio.json';
 
 
 export default function Prato() {
-  const { state } = useLocation();
-  const { prato } = state as {prato: typeof cardapio[0]};
+  const navigate = useNavigate();
+  const  { id } = useParams();
+  const prato = cardapio.find(item => item.id === Number(id));
+  if(!prato) {
+    return '';
+  }
   return(
     <>
-      <button className={styles.voltar}>
+      <button onClick={() => {
+        navigate(-1);
+      }} className={styles.voltar}>
         {'< Voltar'}
       </button>
       <section className={styles.container}>
